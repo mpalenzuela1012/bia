@@ -1,0 +1,26 @@
+FROM public.ecr.aws/docker/library/node:24-slim
+
+RUN npm install -g npm --loglevel=error
+
+# Instalando curl para health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/src/app
+
+# Copiar package.json raiz e instalar dependências do backend
+COPY package*.json ./
+RUN npm install --loglevel=error
+
+# Copiar package.json do client e instalar dependências (incluindo devDependencies para o build)
+COPY client/package*.json ./client/
+RUN cd client && npm install --legacy-peer-deps --loglevel=error
+
+# Copiar todos os arquivos do projeto
+COPY . .
+
+# Build do front-end com Vite
+RUN cd client && VITE_API_URL=/api npm run build
+
+EXPOSE 8080
+
+CMD ["npm", "start"]

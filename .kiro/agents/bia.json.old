@@ -5,32 +5,9 @@
     "tools": [
       "*"
     ],
-    "mcpServers": {
-      "postgres": {
-      "command": "uvx",
-      "args": [
-        "--with",
-        "mcp<2",
-        "postgres-mcp",
-        "--access-mode=unrestricted"
-      ],
-      "env": {
-        "DATABASE_URI": "postgresql://postgres:postgres@localhost:5433/bia"
-      }
-    },
-      "aws-mcp": {
-      "command": "uvx",
-      "args": [
-        "mcp-proxy-for-aws@latest",
-        "https://aws-mcp.us-east-1.api.aws/mcp",
-        "--metadata",
-        "AWS_REGION=us-east-1"
-      ]
-  }
-    },
     "resources": [
       "file://AmazonQ.md",
       "file://README.md",
       "file://.kiro/rules/**/*.md"
     ]
-}
+  }
