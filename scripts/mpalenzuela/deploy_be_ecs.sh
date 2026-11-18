@@ -8,7 +8,7 @@
 #
 # O frontend NAO entra na imagem (ver bia/Dockerfile.backend e bia/Dockerfile.backend.dockerignore).
 #
-# Uso: ./deploy_be_s3.sh [--profile <perfil-aws>] [--cluster <nome>] [--service <nome>] [--task-family <nome>]
+# Uso: ./deploy_be_ecs.sh [--profile <perfil-aws>] [--cluster <nome>] [--service <nome>] [--task-family <nome>]
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
